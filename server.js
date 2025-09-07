@@ -20,7 +20,7 @@ connectDB();
 
 const app = express();
 
-const allowedOrigins = ["http://localhost:5173", "http://localhost:5001"];
+const allowedOrigins = ["http://localhost:https://interview-prep-bot-6ked.vercel.app/", "http://localhost:5001"];
 
 app.use(cors({
   origin: function (origin, callback) {
