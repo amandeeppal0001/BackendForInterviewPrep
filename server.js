@@ -20,7 +20,24 @@ connectDB();
 
 const app = express();
 
-const allowedOrigins = ["http://localhost:https://interview-prep-bot-6ked.vercel.app/", "http://localhost:5001"];
+// const allowedOrigins = ["http://localhost:https://interview-prep-bot-6ked.vercel.app/", "http://localhost:5001"];
+
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new ApiError("Not allowed by CORS"));
+//     }
+//   },
+//   credentials: true
+// }));
+
+const allowedOrigins = [
+  "http://localhost:3000", // local React dev
+  "http://localhost:5001", // local backend
+  "https://interview-prep-bot-6ked.vercel.app" // deployed frontend
+];
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -32,6 +49,21 @@ app.use(cors({
   },
   credentials: true
 }));
+
+// Handle preflight requests for all routes
+app.options("*", cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
+
+
+
+
+
+
+
+
+
 // --- Middleware ---
 // Enable Cross-Origin Resource Sharing (CORS) for all routes
 // This allows the frontend (running on a different port) to communicate with the backend.
