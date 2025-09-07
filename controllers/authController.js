@@ -98,8 +98,9 @@ export const loginUser = asyncHandler(async (req, res) => {
 
         const options = {  //Instead of repeating attributes for each cookie() call, you define them once in the options object, making the code DRY (Don't Repeat Yourself). // reusability adds also.
         httpOnly: true, //This is a crucial security feature to mitigate cross-site scripting (XSS) attacks.
-        secure: true  //The secure attribute ensures the cookie is only sent over HTTPS, never over unencrypted HTTP connections.// This protects the cookie from being intercepted by attackers via man-in-the-middle (MITM) attacks on unencrypted connections.
-     }
+        secure: true,  //The secure attribute ensures the cookie is only sent over HTTPS, never over unencrypted HTTP connections.// This protects the cookie from being intercepted by attackers via man-in-the-middle (MITM) attacks on unencrypted connections.
+        sameSite: "none"
+    }
 
 
      return res
@@ -141,6 +142,7 @@ export const logoutUser = asyncHandler(async (req, res) => {
     const options = {
         httpOnly: true,
         secure: true, // Set true if using HTTPS
+        sameSite: "none"
     };
 
     // Clear cookies and send a success response
@@ -176,7 +178,8 @@ try {
     
         const options = {
             httpOnly: true,
-            secure: true
+            secure: true,
+            sameSite: "none"
          }
     
          const {accessToken, newRefreshToken} = await generateAccessAndRefereshTokens(user._id)
