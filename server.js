@@ -37,6 +37,7 @@ const allowedOrigins = [
   "http://localhost:5173",
    // local React dev
      "http://localhost:3000",
+     "http://localhost:3000",
 
   "http://localhost:5001", // local backend
   "https://interview-prep-bot-6ked.vercel.app" // deployed frontend
